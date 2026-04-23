@@ -558,9 +558,7 @@
 
 <!-- Side Menu -->
 <div class="menu" id="menu">
-  <a onclick="showSection('gallerySection'); closeMenu();">✂ CUTS</a>
-  <a onclick="showSection('bookingSection'); closeMenu();">📆 BOOKING</a>
-  <a onclick="showSection('reviewsSection'); closeMenu();">⭐ REVIEWS</a>
+  <a onclick="showSection('homeSection'); closeMenu();">🏠 HOME PAGE</a>
   <a onclick="showSection('walkInPriceSection'); closeMenu();">💰 Appointment Price List</a>
 
   <div class="opening-hours">
@@ -1019,8 +1017,14 @@ const firebaseConfig = {
     document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
     document.getElementById(sectionId).classList.add('active');
 
+    // Section-specific loaders
     if (sectionId === 'gallerySection') loadGallery('galleryDisplay');
     else if (sectionId === 'reviewsSection') loadReviews(currentUser);
+    else if (sectionId === 'walkInPriceSection') renderWalkInSlots();
+
+    // Home action buttons only appear on the home page
+    const btns = document.getElementById('homeActionButtons');
+    if (btns) btns.style.display = (sectionId === 'homeSection') ? 'flex' : 'none';
 
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
@@ -2064,13 +2068,6 @@ const firebaseConfig = {
     container.innerHTML = html;
   }
 
-  // Hook into showSection to render walk-in slots when that page opens
-  const _origShowSection = showSection;
-  showSection = function(sectionId) {
-    _origShowSection(sectionId);
-    if (sectionId === 'walkInPriceSection') renderWalkInSlots();
-  };
-
   // ========== PHONE FORMAT ==========
   document.addEventListener("DOMContentLoaded", function () {
     const phoneInput = document.getElementById("phone");
@@ -2113,15 +2110,8 @@ const firebaseConfig = {
 </div>
 
 <script>
-  // Show action buttons only on the home page
+  // Add spacing at bottom of home section so fixed buttons don't cover content
   (function() {
-    const originalShowSection = window.showSection;
-    window.showSection = function(sectionId) {
-      originalShowSection(sectionId);
-      const btns = document.getElementById('homeActionButtons');
-      if (btns) btns.style.display = (sectionId === 'homeSection') ? 'flex' : 'none';
-    };
-    // Add spacing at bottom of home section so buttons don't cover content
     const homeSection = document.getElementById('homeSection');
     if (homeSection) homeSection.style.paddingBottom = '280px';
   })();
