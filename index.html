@@ -543,11 +543,16 @@
   <a class="location-button" href="https://maps.app.goo.gl/YuDnPRUrxBcQqV4c9" target="_blank">📍</a>
 </div>
 
-<!-- Gallery Section -->
-<div class="content-section active" id="gallerySection">
+<!-- Home Section (logo only, default landing page) -->
+<div class="content-section active" id="homeSection">
   <div style="text-align:left; padding-top: 90px; padding-bottom: 20px; padding-left: 20px;">
     <img src="https://res.cloudinary.com/dqqr9udcs/image/upload/v1776902739/IMG-20260422-WA0049_cju7wv.jpg" alt="House of Kutz Logo" style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 3px solid var(--gold); box-shadow: 0 4px 20px rgba(0,0,0,0.5); background: #0f0f0f;">
   </div>
+</div>
+
+<!-- Gallery Section -->
+<div class="content-section" id="gallerySection">
+  <h1 style="color:#ffffff;">OUR KUTS</h1>
   <div id="galleryDisplay"></div>
 </div>
 
@@ -1002,10 +1007,10 @@ const firebaseConfig = {
 
   function closeMenu() {
     document.getElementById("menu").classList.remove("show");
-    // Restore home action buttons only if we're on the gallery (home) section
+    // Restore home action buttons only if we're on the home section
     const btns = document.getElementById("homeActionButtons");
-    const gallery = document.getElementById("gallerySection");
-    if (btns && gallery && gallery.classList.contains("active")) {
+    const home = document.getElementById("homeSection");
+    if (btns && home && home.classList.contains("active")) {
       btns.style.display = "flex";
     }
   }
@@ -1016,6 +1021,8 @@ const firebaseConfig = {
 
     if (sectionId === 'gallerySection') loadGallery('galleryDisplay');
     else if (sectionId === 'reviewsSection') loadReviews(currentUser);
+
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
   // ========== GALLERY ==========
@@ -1075,8 +1082,7 @@ const firebaseConfig = {
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    showSection('gallerySection');
-    loadGallery('galleryDisplay');
+    showSection('homeSection');
   });
 
   // Appointment days: Tue–Sun | Closed: Monday
@@ -2102,22 +2108,22 @@ const firebaseConfig = {
 <!-- Fixed Action Buttons (home page only) -->
 <div id="homeActionButtons" style="position:fixed; bottom:35px; left:0; right:0; z-index:999; display:flex; flex-direction:column; align-items:center; gap:8px; padding:12px 20px; pointer-events:none;">
   <button onclick="showSection('bookingSection')" style="pointer-events:auto; width:100%; max-width:320px; background:var(--accent); color:var(--cream); font-family:'Bebas Neue',cursive; font-size:18px; letter-spacing:2px; padding:12px 24px; border:2px solid var(--gold); border-radius:8px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,0.5); transition:all 0.2s;" onmouseover="this.style.background='var(--accent2)'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--accent)'; this.style.transform='translateY(0)'">✂ BOOK YOUR KUT NOW</button>
-  <button onclick="showSection('gallerySection'); window.scrollTo({top: document.getElementById('galleryDisplay').offsetTop - 60, behavior: 'smooth'});" style="pointer-events:auto; width:100%; max-width:320px; background:#1a1a1a; color:var(--cream); font-family:'Bebas Neue',cursive; font-size:18px; letter-spacing:2px; padding:12px 24px; border:2px solid var(--accent); border-radius:8px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,0.5); transition:all 0.2s;" onmouseover="this.style.background='var(--accent)'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#1a1a1a'; this.style.transform='translateY(0)'">📸 VIEW KUTS</button>
+  <button onclick="showSection('gallerySection'); window.scrollTo({top: 0, behavior: 'smooth'});" style="pointer-events:auto; width:100%; max-width:320px; background:#1a1a1a; color:var(--cream); font-family:'Bebas Neue',cursive; font-size:18px; letter-spacing:2px; padding:12px 24px; border:2px solid var(--accent); border-radius:8px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,0.5); transition:all 0.2s;" onmouseover="this.style.background='var(--accent)'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#1a1a1a'; this.style.transform='translateY(0)'">📸 VIEW KUTS</button>
   <button onclick="showSection('reviewsSection')" style="pointer-events:auto; width:100%; max-width:320px; background:#1a1a1a; color:var(--cream); font-family:'Bebas Neue',cursive; font-size:18px; letter-spacing:2px; padding:12px 24px; border:2px solid var(--gold); border-radius:8px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,0.5); transition:all 0.2s;" onmouseover="this.style.background='var(--gold)'; this.style.color='#1a1a1a'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#1a1a1a'; this.style.color='var(--cream)'; this.style.transform='translateY(0)'">⭐ LEAVE A REVIEW</button>
 </div>
 
 <script>
-  // Show action buttons only on home page (gallery section)
+  // Show action buttons only on the home page
   (function() {
     const originalShowSection = window.showSection;
     window.showSection = function(sectionId) {
       originalShowSection(sectionId);
       const btns = document.getElementById('homeActionButtons');
-      if (btns) btns.style.display = (sectionId === 'gallerySection') ? 'flex' : 'none';
+      if (btns) btns.style.display = (sectionId === 'homeSection') ? 'flex' : 'none';
     };
-    // Also add spacing at bottom of gallery so buttons don't cover content
-    const gallerySection = document.getElementById('gallerySection');
-    if (gallerySection) gallerySection.style.paddingBottom = '280px';
+    // Add spacing at bottom of home section so buttons don't cover content
+    const homeSection = document.getElementById('homeSection');
+    if (homeSection) homeSection.style.paddingBottom = '280px';
   })();
 </script>
 </body>
