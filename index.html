@@ -539,7 +539,7 @@
 <!-- Header -->
 <div class="header-bar">
   <button class="menu-button" onclick="toggleMenu()">☰</button>
-  <div class="header-title">HOUSE OF KUTZ <span class="scissors">✂</span></div>
+  <div class="header-title">HOUSE OF CUTZ <span class="scissors">✂</span></div>
   <a class="location-button" href="https://maps.app.goo.gl/YuDnPRUrxBcQqV4c9" target="_blank">📍</a>
 </div>
 
@@ -2089,5 +2089,27 @@ const firebaseConfig = {
 </script>
 <!-- Footer Banner -->
 <div style="position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,#0a0a0a 0%,#1a1a1a 100%);border-top:3px solid transparent;border-image:repeating-linear-gradient(45deg,#c1272d 0,#c1272d 8px,#ffffff 8px,#ffffff 16px,#0f0f0f 16px,#0f0f0f 24px) 3;text-align:center;padding:7px 20px 5px;font-family:Bebas Neue,cursive;font-size:13px;letter-spacing:2px;color:#aaa;z-index:1000;">NEED YOUR OWN WEBSITE? VISIT: <a href="https://www.webvtec.com" target="_blank" style="color:var(--accent);text-decoration:none;margin-left:6px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--accent)'">webvtec.com</a></div>
+
+<!-- Fixed Action Buttons (home page only) -->
+<div id="homeActionButtons" style="position:fixed; bottom:35px; left:0; right:0; z-index:999; display:flex; flex-direction:column; align-items:center; gap:8px; padding:12px 20px; pointer-events:none;">
+  <button onclick="showSection('bookingSection')" style="pointer-events:auto; width:100%; max-width:320px; background:var(--accent); color:var(--cream); font-family:'Bebas Neue',cursive; font-size:18px; letter-spacing:2px; padding:12px 24px; border:2px solid var(--gold); border-radius:8px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,0.5); transition:all 0.2s;" onmouseover="this.style.background='var(--accent2)'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--accent)'; this.style.transform='translateY(0)'">✂ BOOK YOUR KUT NOW</button>
+  <button onclick="showSection('gallerySection'); window.scrollTo({top: document.getElementById('galleryDisplay').offsetTop - 60, behavior: 'smooth'});" style="pointer-events:auto; width:100%; max-width:320px; background:#1a1a1a; color:var(--cream); font-family:'Bebas Neue',cursive; font-size:18px; letter-spacing:2px; padding:12px 24px; border:2px solid var(--accent); border-radius:8px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,0.5); transition:all 0.2s;" onmouseover="this.style.background='var(--accent)'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#1a1a1a'; this.style.transform='translateY(0)'">📸 VIEW KUTS</button>
+  <button onclick="showSection('reviewsSection')" style="pointer-events:auto; width:100%; max-width:320px; background:#1a1a1a; color:var(--cream); font-family:'Bebas Neue',cursive; font-size:18px; letter-spacing:2px; padding:12px 24px; border:2px solid var(--gold); border-radius:8px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,0.5); transition:all 0.2s;" onmouseover="this.style.background='var(--gold)'; this.style.color='#1a1a1a'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#1a1a1a'; this.style.color='var(--cream)'; this.style.transform='translateY(0)'">⭐ LEAVE A REVIEW</button>
+</div>
+
+<script>
+  // Show action buttons only on home page (gallery section)
+  (function() {
+    const originalShowSection = window.showSection;
+    window.showSection = function(sectionId) {
+      originalShowSection(sectionId);
+      const btns = document.getElementById('homeActionButtons');
+      if (btns) btns.style.display = (sectionId === 'gallerySection') ? 'flex' : 'none';
+    };
+    // Also add spacing at bottom of gallery so buttons don't cover content
+    const gallerySection = document.getElementById('gallerySection');
+    if (gallerySection) gallerySection.style.paddingBottom = '280px';
+  })();
+</script>
 </body>
 </html>
