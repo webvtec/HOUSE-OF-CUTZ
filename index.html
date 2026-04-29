@@ -758,6 +758,7 @@
         <option value="Adult Trim Shave Hot Towel Beard Oil">Trim &amp; Shave + Hot Towel &amp; Beard Oil — $2,000</option>
         <option value="Adult Trim Shave Spray Tint Hot Towel">Trim &amp; Shave + Spray Tint Hair Line &amp; Hot Towel — $2,500</option>
         <option value="Adult Ladies Kut">Ladies Kut — $1,200+</option>
+        <option value="Adult Scissors Kut">Scissors Kut — $2,000+</option>
         <option value="Adult Ladies Scissors Kut">Ladies Scissors Kut — $2,000+</option>
         <option value="Adult Color Beard Only">Color Beard Only — $800</option>
       </select>
@@ -774,6 +775,7 @@
         <option value="Teen Line Up Only">Line Up Only — $700</option>
         <option value="Teen Line Up and Shave">Line Up and Shave — $1,000</option>
         <option value="Teen Ladies Kut">Ladies Kut — $1,200+</option>
+        <option value="Teen Scissors Kut">Scissors Kut — $2,000+</option>
         <option value="Teen Ladies Scissors Kut">Ladies Scissors Kut — $2,000+</option>
         <option value="Teen Color Beard Only">Color Beard Only — $800</option>
       </select>
@@ -785,6 +787,7 @@
       <select id="kidsService" onchange="onServiceChange();">
         <option value="NONE">— Select a service —</option>
         <option value="Kids Boyz Kut">Boyz Kut — $1,000</option>
+        <option value="Kids Scissors Kut">Scissors Kut — $2,000+</option>
       </select>
     </div>
 
@@ -2401,13 +2404,13 @@ const firebaseConfig = {
     if (!user) { googleSignIn(); return; }
 
     Swal.fire({
-      title: 'Cancel Booking?',
-      html: `<p style="font-family:'Barlow',sans-serif; color:#555; font-size:15px;">Are you sure you want to cancel <strong>Booking #${bookingNumber}</strong>?<br><br>This cannot be undone.</p>`,
+      title: 'Want to Cancel?',
+      html: `<p style="font-family:'Barlow',sans-serif; color:#555; font-size:15px;">We'd prefer you call us to cancel <strong>Booking #${bookingNumber}</strong>:<br><br><a href="tel:+18762086156" style="font-size:20px; font-weight:700; color:#c1272d; text-decoration:none;">📞 +1 (876) 208-6156</a><br><br>Or you can still cancel below.</p>`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#e53935',
       cancelButtonColor: '#888',
-      confirmButtonText: 'Yes, Cancel It',
+      confirmButtonText: 'Cancel Booking Anyway',
       cancelButtonText: 'Keep Booking',
       reverseButtons: true
     }).then((result) => {
