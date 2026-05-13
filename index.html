@@ -621,7 +621,8 @@
 
   <div class="opening-hours">
     <h3>APPOINTMENTS &amp; WALK-INS:</h3>
-    <p>Open Every Day: 8:00 AM – 9:00 PM</p>
+    <p>Mon–Sat: 8:00 AM – 9:00 PM</p>
+    <p>Sunday: 11:00 AM – 6:30 PM</p>
   </div>
 
   <a class="menu-action-btn" onclick="showUserBookings(); closeMenu();" href="javascript:void(0);">MY BOOKINGS</a>
@@ -706,7 +707,7 @@
   <div style="max-width:420px; margin:0 auto 16px; background:#1a1a1a; border-left:4px solid var(--accent); border-radius:6px; padding:12px 16px; font-size:13px; color:#ccc; line-height:1.6;">
     📅 <strong style="color:var(--accent);">Appointments:</strong> Every Day<br>
     🚶 <strong style="color:var(--accent);">Walk-ins:</strong> Every Day<br>
-    🕗 <strong style="color:var(--accent);">Hours:</strong> 8:00 AM – 9:00 PM<br>
+    🕗 <strong style="color:var(--accent);">Hours:</strong> Mon–Sat: 8:00 AM – 9:00 PM &nbsp;|&nbsp; Sun: 11:00 AM – 6:30 PM<br>
     ⏱ <strong style="color:#e74c3c;">10-minute grace period</strong> — late arrivals lose their spot
   </div>
   <form onsubmit="submitBooking(event)">
@@ -838,7 +839,7 @@
 <div class="content-section" id="walkInPriceSection">
   <h1 style="font-family:'Bebas Neue',cursive; letter-spacing:2px; color:var(--accent); text-align:center; margin-top:80px; font-size:30px;">Appointment Price List</h1>
   <div style="max-width:420px; margin:0 auto 24px; background:#1a1a1a; border-left:4px solid var(--accent); border-radius:6px; padding:10px 16px; font-size:13px; color:#ccc; line-height:1.6;">
-    📆 <strong style="color:var(--accent);">Appointments:</strong> Every Day &nbsp;|&nbsp; 8:00 AM – 9:00 PM
+    📆 <strong style="color:var(--accent);">Appointments:</strong> Every Day &nbsp;|&nbsp; Mon–Sat: 8:00 AM – 9:00 PM &nbsp;|&nbsp; Sun: 11:00 AM – 6:30 PM
   </div>
 
   <div style="max-width:420px; margin:0 auto; padding:0 16px 80px;">
@@ -1211,7 +1212,7 @@ const firebaseConfig = {
     showSection('homeSection');
   });
 
-  // Appointment days: Every day (Sunday–Saturday) | 8:00 AM – 9:00 PM
+  // Appointment days: Mon–Sat 8:00 AM – 9:00 PM | Sunday 11:00 AM – 6:30 PM
   const businessHours = {
     'Monday':    { open: '8:00 AM', close: '9:00 PM' },
     'Tuesday':   { open: '8:00 AM', close: '9:00 PM' },
@@ -1219,7 +1220,7 @@ const firebaseConfig = {
     'Thursday':  { open: '8:00 AM', close: '9:00 PM' },
     'Friday':    { open: '8:00 AM', close: '9:00 PM' },
     'Saturday':  { open: '8:00 AM', close: '9:00 PM' },
-    'Sunday':    { open: '8:00 AM', close: '9:00 PM' }
+    'Sunday':    { open: '11:00 AM', close: '6:30 PM' }
   };
 
   // Walk-in-only days (no online booking). Empty = online booking available every open day.
